@@ -1,0 +1,5 @@
+TravelExpenses/Debug
+*.sln
+*.sdf
+*.vcxproj
+*.filters
