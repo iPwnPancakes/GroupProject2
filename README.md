@@ -8,7 +8,7 @@ The travel expenses folder is where Programming Challenge 6-24 is hosted.
 1. The src folder is where each person's submitted code is.
 2. The test folder is where the test stubs and drivers are located. 
 <p>
-The only person who doesn't have their own folder in the src folder is Daniel Buenrrostro, who wrote the main.cpp file and the stubs/drivers 
+The only person who doesn't have their own named file in the src folder is Daniel Buenrrostro, who wrote the main.cpp file and the stubs/drivers 
 for each Programming Challenge.
 </p>
 <h2>Seating</h2>
