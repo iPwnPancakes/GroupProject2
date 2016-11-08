@@ -1,5 +1,15 @@
-TravelExpenses/Debug
+# ignore most files produced by visual studio
 *.sln
 *.sdf
-*.vcxproj
+*.obj
+*.vcproj.*.user
+*.vcxproj.user
+*.csproj.user
+*.vspscc
 *.filters
+*.log
+*.tlog
+*.lastbuildstate
+
+# Ignore thumbnails created by windows
+Thumbs.db
