@@ -1,0 +1,52 @@
+Methods:
+
+1
+- Should take an integer array representing the row number and a double array representing the price of the row.
+  FOR EACH ROW prompt the user to enter the price of the row, then set the index of the price array to the price entered.
+  VALIDATE the user entered a positive value.
+  Should NOT return anything.
+
+2
+- Prompt a user which row they would like to sit in.
+  VALIDATE the value entered is >= 1 AND <= 15.
+  Return the value - 1 as the integer data type.
+
+3
+- Prompt the user which seat number they would like to sit in.
+  VALIDATE the value entered is >= 1 AND <= 30.
+  Return the value - 1 as the integer data type.
+
+4
+- The method should take an integer representing the row number and a double array representing the row prices.
+  Return the price of the row.
+
+5
+- The method should take a two-dimensional char array as a parameter that represents the seating array, an integer representing the row, and an integer representing the seat number.
+  If the seat is equal to '*', return false.
+  Else, if the seat is equal to '#', change the seat to a '*' and return true.
+
+6
+- The method should take a two-dimensional char array as a parameter that represents the seating array, and a double array representing the row prices.
+  Initialize a variable named total of type double to 0.
+  FOR EACH SEAT, IF the seat is equal to '*', use the current row number to determine what the row price is, and add it to the total.
+  Return the total.
+
+7
+- The method should take a two-dimensional char array as a parameter that represents the seating array.
+  Initialize a variable named seatsSold of type integer to 0.
+  FOR EACH SEAT, IF the seat is equal to '*', increment seatsSold variable by 1.
+  Return seatsSold.
+
+8
+- The method should take a two-dimensional char array as a parameter that represents the seating array.
+  Initialize a variable named rowSeats of type integer to 0.
+  FOR EACH ROW, set rowSeats to 0, then FOR EACH SEAT, IF the seat is equal to '*', increment rowSeats by 1.
+  After all seats in the ROW have been checked, display the current rowSeats value using the prompt:
+    "Available seats in row " >> i+1 >> ": " >> rowSeats.
+  Should NOT return anything.
+
+9
+- The method should take a two-dimensional char array as a parameter that represents the seating array.
+  Initialize a variable named seatsOpen of type integer to 0.
+  FOR EACH SEAT, IF the seat is equal to '#', increment seatsOpen variable by 1.
+  Return seatsOpen.
