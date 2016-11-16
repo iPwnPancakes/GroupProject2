@@ -15,62 +15,86 @@ char seatArray[ROWS][SEATS];
 
 double priceArray[ROWS];
 
-/** STUBS TO BE USED BEFORE THE ASSIGNMENTS OF METHODS**/
-
-/**1**/
-void rowPrices(int ROWS, double prices[]) {
-	for (int i = 0; i < ROWS; i++) {
-		prices[i] = 9999.99;
+/** START of Christopher Self's Code **/
+void rowPrices(int ROWS, double priceArray[])
+{
+	double price;
+	for (int index = 0; index < ROWS; index++)
+	{
+		cout << "What is the price of row " << (index + 1) << "?\n";
+		cin >> price;
+		while (price <= 0)
+		{
+			cout << "Error, please enter a value greater than 0\n";
+			cin >> price;
+		}
+		priceArray[index] = price;
 	}
 }
 
-/**2**/
-int getRow() {
-	int rowWanted;
-	cin >> rowWanted;
-	return rowWanted;
+int getRow()
+{
+	int rowChoice;
+	cout << "Which row would you like to sit in? (1-15)\n";
+	cin >> rowChoice;
+	while (rowChoice < 1 || rowChoice > 15)
+	{
+		cout << "Error, that row does not exist, please choose another row:\n";
+		cin >> rowChoice;
+	}
+	return rowChoice - 1;
 }
 
-/**3**/
-int getSeatNumber() {
-	int seatWanted;
-	cin >> seatWanted;
-	return seatWanted;
+int getSeatNumber()
+{
+	int seatChoice;
+	cout << "What seat would you like to sit in? (1-30)\n";
+	cin >> seatChoice;
+	while (seatChoice < 1 || seatChoice > 30)
+	{
+		cout << "Error, please choose a valid seat option\n";
+		cin >> seatChoice;
+	}
+	return seatChoice - 1;
 }
 
-/**4**/
 double getPriceOfRow(int row, double priceArray[]) {
-	return 100;
+	return priceArray[row];
 }
 
-/**5**/
-bool seatPerson(char seatArray[ROWS][SEATS], int row, int seat) {
-	return true;
-}
+/** END of Christopher Self's Code **/
 
-/**6**/
-double getTotalTicketPrices(char seatArray[ROWS][SEATS], double priceArray[]) {
+/** START of Jaime Bright's Code**/
+
+double getTotalTicketPrices(char seatArray[][SEATS], double priceArray[]) {
 	return 99999.99;
 }
 
-/**7**/
-int getSeatsSold(char seatArray[ROWS][SEATS]) {
+int getSeatsSold(char seatArray[][SEATS]) {
 	return 224;
 }
 
-/**8**/
-void showAvailableRowSeats(char seatArray[ROWS][SEATS]) {
+void showAvailableRowSeats(char seatArray[][SEATS]) {
 	cout << "Available seats: ALL OF THEM." << endl;
 }
 
-/**9**/
-int getTotalAvailableSeats(char seatArray[ROWS][SEATS]) {
+int getTotalAvailableSeats(char seatArray[][SEATS]) {
 	return 226;
 }
 
-/**10**/
-void displaySeating() {
-	cout << "SEATS ARRAY" << endl;
+/** END of Jaime Bright's Code **/
+
+/** Start of Daniel Buenrrostro's Code **/
+
+bool seatPerson(char seatArray[][SEATS], int rowRequested, int seatRequested) {
+	if (seatArray[rowRequested][seatRequested] == '*') {
+		cout << "Seat already taken! Please chose another!" << '\n';
+		return false;
+	}
+	else {
+		seatArray[rowRequested][seatRequested] = '*';
+	}
+	return true;
 }
 
 void displayMenu() {
@@ -94,9 +118,7 @@ void sellTickets() {
 		int rowWanted, seatWanted;
 
 		do {
-			cout << "Which row do you want?" << endl;
 			rowWanted = getRow();
-			cout << "Which seat do you want?" << endl;
 			seatWanted = getSeatNumber();
 		} while (!seatPerson(seatArray, rowWanted, seatWanted)); //Do while the user entered an invalid row and seat value.
 
@@ -105,18 +127,35 @@ void sellTickets() {
 	cout << "Total price of tickets purchased: " << totalPrice << endl;
 }
 
+void displaySeating(char seatArray[][SEATS]) {
+	for (int i = 0; i < ROWS; i++) {
+		for (int j = 0; j < SEATS; j++) {
+			cout << seatArray[i][j];
+		}
+		cout << '\n';
+	}
+}
+
+void fillSeats(char seatArray[][SEATS]) {
+	for (int i = 0; i < ROWS; i++) {
+		for (int j = 0; j < SEATS; j++) {
+			seatArray[i][j] = '#';
+		}
+	}
+}
+
 int main()
 {
-
+	fillSeats(seatArray);
+	
 	int choice;
-
 	do
 	{
 		displayMenu();
 		cin >> choice;
 		switch (choice)
 		{
-		case 1: sellTickets(); break;
+		case 1: displaySeating(seatArray); sellTickets(); break;
 		case 2: cout << "Total ticket sales: " << getTotalTicketPrices(seatArray, priceArray) << endl; break;
 		case 3: cout << "Total seats sold: " << getSeatsSold(seatArray) << endl; break;
 		case 4: showAvailableRowSeats(seatArray); break;
@@ -133,4 +172,5 @@ int main()
 	return 0;
 }
 
+/** END of Daniel Buenrrostro's Code **/
 
