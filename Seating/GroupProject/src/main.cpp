@@ -1,4 +1,5 @@
 #include <iostream>
+#include <iomanip>
 #include <ostream>
 
 using namespace std;
@@ -20,7 +21,7 @@ void rowPrices(int ROWS, double priceArray[])
 		cin >> price;
 		while (price <= 0)
 		{
-			cout << "Error, please enter a value greater than 0\n";
+			cout << "Error, please enter a value greater than 0:\n";
 			cin >> price;
 		}
 		priceArray[index] = price;
@@ -58,57 +59,6 @@ double getPriceOfRow(int row, double priceArray[]) {
 }
 
 /** END of Christopher Self's Code **/
-
-/** START of Jaime Bright's Code**/
-
-double getTotalTicketPrices(char seatArray[][SEATS], double priceArray[]) {
-	double total = 0;
-	for (int i = 0; i < ROWS; i++) {
-		for (int j = 0; j < SEATS; j++) {
-			if (seatArray[i][j] == '*') {
-				total += priceArray[i];
-			}
-		}
-	}
-	return total;
-}
-
-int getSeatsSold(char seatArray[][SEATS]) {
-	int seatsSold = 0;
-	for (int i = 0; i < ROWS; i++) {
-		for (int j = 0; j < SEATS; j++) {
-			if (seatArray[i][j] == '*') {
-				seatsSold++;
-			}
-		}
-	}
-	return seatsSold;
-}
-
-void showAvailableRowSeats(char seatArray[][SEATS]) {
-	int rowSeats;
-	for (int i = 0; i < ROWS; i++) {
-		rowSeats = 0;
-		for (int j = 0; j < SEATS; j++) {
-			if (seatArray[i][j] == '#') {
-				rowSeats++;
-			}
-		}
-		cout << "Available seats in row " << i + 1 << ": " << rowSeats << "\n";
-	}
-}
-
-int getTotalAvailableSeats(char seatArray[][SEATS]) {
-	int seatsOpen = 0;
-	for (int i = 0; i < ROWS; i++) {
-		for (int j = 0; j < SEATS; j++) {
-			if (seatArray[i][j] == '#') {
-				seatsOpen++;
-			}
-		}
-	}
-	return seatsOpen;
-}
 
 /** START of Jaime Bright's Code**/
 
@@ -177,13 +127,13 @@ bool seatPerson(char seatArray[][SEATS], int rowRequested, int seatRequested) {
 }
 
 void displayMenu() {
-	cout << "Choose an option: " << endl;
 	cout << "1. Sell tickets" << endl;
 	cout << "2. View total ticket sales" << endl;
 	cout << "3. View total amount of seats sold" << endl;
 	cout << "4. View amount of seats available in each row" << endl;
 	cout << "5. View amount of all seats available" << endl;
 	cout << "6. Exit" << endl;
+	cout << "Choose an option: ";
 }
 
 void sellTickets() {
@@ -203,7 +153,7 @@ void sellTickets() {
 
 		totalPrice += getPriceOfRow(rowWanted, priceArray);
 	}
-	cout << "Total price of tickets purchased: " << totalPrice << endl;
+	cout << "Total price of tickets purchased: $" << setprecision(2) << fixed << totalPrice << endl;
 }
 
 void displaySeating(char seatArray[][SEATS]) {
@@ -212,15 +162,6 @@ void displaySeating(char seatArray[][SEATS]) {
 			cout << seatArray[i][j];
 		}
 		cout << '\n';
-	}
-}
-
-void setRowPrices() {
-	double price;
-	for (int i = 0; i < ROWS; i++) {
-		cout << "Enter the price of row " << i + 1 << ':' << '\n';
-		cin >> price;
-		priceArray[i] = price;
 	}
 }
 
@@ -235,23 +176,23 @@ void fillSeats(char seatArray[][SEATS]) {
 int main()
 {
 	fillSeats(seatingArray);
-	setRowPrices();
+	rowPrices(ROWS, priceArray);
 	int choice;
 	do
 	{
+		cout << "Seating" << '\n';
+		displaySeating(seatingArray);
 		displayMenu();
 		cin >> choice;
 		switch (choice)
 		{
-		case 1: displaySeating(seatingArray); sellTickets(); break;
-		case 2: cout << "Total ticket sales: " << getTotalTicketPrices(seatingArray, priceArray) << endl; break;
-		case 3: cout << "Total seats sold: " << getSeatsSold(seatingArray) << endl; break;
-		case 4: showAvailableRowSeats(seatingArray); break;
-		case 5: cout << "Total amount of seats available: " << getTotalAvailableSeats(seatingArray) << endl; break;
-		case 6: break;
-		default:
-			cout << "Please enter a valid menu value (1 - 6)" << endl;
-			cin >> choice;
+			case 1: sellTickets(); cout << '\n'; break;
+			case 2: cout << "Total ticket sales: $" << setprecision(2) << fixed << getTotalTicketPrices(seatingArray, priceArray) << endl; cout << '\n'; break;
+			case 3: cout << "Total seats sold: " << getSeatsSold(seatingArray) << endl; cout << '\n'; break;
+			case 4: showAvailableRowSeats(seatingArray); cout << '\n'; break;
+			case 5: cout << "Total amount of seats available: " << getTotalAvailableSeats(seatingArray) << endl; cout << '\n'; break;
+			case 6: cout << '\n'; break;
+			default: cout << "Please enter a valid menu value (1 - 6)" << endl; break;
 		}
 	} while (choice != 6);
 
