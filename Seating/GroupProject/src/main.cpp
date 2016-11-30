@@ -3,15 +3,10 @@
 
 using namespace std;
 
-/**
-DRIVER TO BE USED IN PLACE OF main.cpp
-WRITTEN BY: DANIEL Buenrrostro
-**/
-
 const int ROWS = 15;
 const int SEATS = 30;
 
-char seatArray[ROWS][SEATS];
+char seatingArray[ROWS][SEATS];
 
 double priceArray[ROWS];
 
@@ -113,6 +108,7 @@ int getTotalAvailableSeats(char seatArray[][SEATS]) {
 		}
 	}
 	return seatsOpen;
+}
 
 /** START of Jaime Bright's Code**/
 
@@ -203,7 +199,7 @@ void sellTickets() {
 		do {
 			rowWanted = getRow();
 			seatWanted = getSeatNumber();
-		} while (!seatPerson(seatArray, rowWanted, seatWanted)); //Do while the user entered an invalid row and seat value.
+		} while (!seatPerson(seatingArray, rowWanted, seatWanted)); //Do while the user entered an invalid row and seat value.
 
 		totalPrice += getPriceOfRow(rowWanted, priceArray);
 	}
@@ -238,7 +234,7 @@ void fillSeats(char seatArray[][SEATS]) {
 
 int main()
 {
-	fillSeats(seatArray);
+	fillSeats(seatingArray);
 	setRowPrices();
 	int choice;
 	do
@@ -247,11 +243,11 @@ int main()
 		cin >> choice;
 		switch (choice)
 		{
-		case 1: displaySeating(seatArray); sellTickets(); break;
-		case 2: cout << "Total ticket sales: " << getTotalTicketPrices(seatArray, priceArray) << endl; break;
-		case 3: cout << "Total seats sold: " << getSeatsSold(seatArray) << endl; break;
-		case 4: showAvailableRowSeats(seatArray); break;
-		case 5: cout << "Total amount of seats available: " << getTotalAvailableSeats(seatArray) << endl; break;
+		case 1: displaySeating(seatingArray); sellTickets(); break;
+		case 2: cout << "Total ticket sales: " << getTotalTicketPrices(seatingArray, priceArray) << endl; break;
+		case 3: cout << "Total seats sold: " << getSeatsSold(seatingArray) << endl; break;
+		case 4: showAvailableRowSeats(seatingArray); break;
+		case 5: cout << "Total amount of seats available: " << getTotalAvailableSeats(seatingArray) << endl; break;
 		case 6: break;
 		default:
 			cout << "Please enter a valid menu value (1 - 6)" << endl;
