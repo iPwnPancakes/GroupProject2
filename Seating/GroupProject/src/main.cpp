@@ -63,7 +63,6 @@ double getPriceOfRow(int row, double priceArray[]) {
 }
 
 /** END of Christopher Self's Code **/
-<<<<<<< HEAD
 
 /** START of Jaime Bright's Code**/
 
@@ -114,25 +113,56 @@ int getTotalAvailableSeats(char seatArray[][SEATS]) {
 		}
 	}
 	return seatsOpen;
-=======
 
 /** START of Jaime Bright's Code**/
 
 double getTotalTicketPrices(char seatArray[][SEATS], double priceArray[]) {
-	return 99999.99;
+    double total = 0;
+    for (int i = 0; i < ROWS; i++) {
+        for (int j = 0; j < SEATS; j++) {
+            if (seatArray[i][j] == '*') {
+                total += priceArray[i];
+            }
+        }
+    }
+    return total;
 }
-
+ 
 int getSeatsSold(char seatArray[][SEATS]) {
-	return 224;
+    int seatsSold = 0;
+    for (int i = 0; i < ROWS; i++) {
+        for (int j = 0; j < SEATS; j++) {
+            if (seatArray[i][j] == '*') {
+                seatsSold++;
+            }
+        }
+    }
+    return seatsSold;
 }
-
+ 
 void showAvailableRowSeats(char seatArray[][SEATS]) {
-	cout << "Available seats: ALL OF THEM." << endl;
+    int rowSeats;
+    for (int i = 0; i < ROWS; i++) {
+        rowSeats = 0;
+        for (int j = 0; j < SEATS; j++) {
+            if (seatArray[i][j] == '#') {
+                rowSeats++;
+            }
+        }
+        cout << "Available seats in row " << i + 1 << ": " << rowSeats << "\n";
+    }
 }
-
+ 
 int getTotalAvailableSeats(char seatArray[][SEATS]) {
-	return 226;
->>>>>>> 1cb5cbb103ee80106715cf3e8e30e881c4cc962b
+    int seatsOpen = 0;
+    for (int i = 0; i < ROWS; i++) {
+        for (int j = 0; j < SEATS; j++) {
+            if (seatArray[i][j] == '#') {
+                seatsOpen++;
+            }
+        }
+    }
+    return seatsOpen;
 }
 
 /** END of Jaime Bright's Code **/
@@ -189,7 +219,6 @@ void displaySeating(char seatArray[][SEATS]) {
 	}
 }
 
-<<<<<<< HEAD
 void setRowPrices() {
 	double price;
 	for (int i = 0; i < ROWS; i++) {
@@ -199,8 +228,6 @@ void setRowPrices() {
 	}
 }
 
-=======
->>>>>>> 1cb5cbb103ee80106715cf3e8e30e881c4cc962b
 void fillSeats(char seatArray[][SEATS]) {
 	for (int i = 0; i < ROWS; i++) {
 		for (int j = 0; j < SEATS; j++) {
@@ -212,11 +239,7 @@ void fillSeats(char seatArray[][SEATS]) {
 int main()
 {
 	fillSeats(seatArray);
-<<<<<<< HEAD
 	setRowPrices();
-=======
-	
->>>>>>> 1cb5cbb103ee80106715cf3e8e30e881c4cc962b
 	int choice;
 	do
 	{
